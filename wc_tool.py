@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 
 
 def countlines(filename):
@@ -44,3 +45,27 @@ def countwords(filename):
     except FileNotFoundError:
         print("No such file " + filename + " found")
         return False
+
+
+def check_option(switchoption):
+    match switchoption:
+        case "-l":
+            print("\nThe No. of lines in " + filename + ":" + str(countlines(filename)))
+        case "-b":
+            print("\nThe No. of bytes in " + filename + ":" + str(countbytes(filename)))
+        case "-c":
+            print(
+                "\nThe No. of characters in "
+                + filename
+                + ":"
+                + str(countchars(filename))
+            )
+        case "-w":
+            print("\nThe No. of words in " + filename + ":" + str(countwords(filename)))
+
+
+switchoption = sys.argv[1]
+filename = sys.argv[2]
+
+check_option(switchoption)
+print("\n")
